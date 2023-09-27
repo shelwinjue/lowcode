@@ -47,6 +47,10 @@ module.exports = {
               title: '快速上手',
               path: 'quickStart.md',
             },
+            {
+              title: '入口文件',
+              path: 'entry.md',
+            },
           ],
         },
       ],
