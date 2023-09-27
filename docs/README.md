@@ -1,14 +1,15 @@
 ---
 home: true
-heroText: 组件文档
-tagline: 站点由Vuepress生成
-actionText: 起步
-actionLink: /pages/components/GridInteract
+heroText: 见微低代码搭建
+heroImage: /icon.png
+tagline: 低代码研发工具
+actionText: 快速上手 →
+actionLink: /pages/development/installation
 features:
-  - title: 文档规范
-    details: 书写规范的组件文档和代码示例，帮助开发者快速起步
-  - title: Vue驱动
-    details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-  - title: 高性能
-    details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+  - title: 基于vue 2.x
+    details: 基于vue 2.x和Ant Design Vue 1.x组件库，推荐Vue Class Component + TS 写法
+  - title: 自研低代码搭建协议
+    details: 精简阿里开源的低代码搭建协议，组件支持slot配置
+  - title: 面向开发和非开发人员
+    details: 对开发人员提供页面js源码编辑功能，非开发人员只需拖拽组件配置完成页面搭建
 ---

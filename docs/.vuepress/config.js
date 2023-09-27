@@ -1,6 +1,9 @@
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+// const TSPlugin = require('vuepress-plugin-typescript');
+
 module.exports = {
-  title: '见微前端组件站点', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
-  description: '见微前端组件站点', // meta 中的描述文字，用于SEO
+  title: 'JWLowcode', // 显示在左上角的网页名称以及首页在浏览器标签显示的title名称
+  description: '见微低代码搭建', // meta 中的描述文字，用于SEO
   // 注入到当前页面的 HTML <head> 中的标签
   head: [],
   themeConfig: {
@@ -30,63 +33,19 @@ module.exports = {
 
     //侧边导航栏：会根据当前的文件路径是否匹配侧边栏数据，自动显示/隐藏
     sidebar: {
-      '/pages/components/': [
+      '/pages/development/': [
         {
-          title: '组件说明', // 一级菜单名称
+          title: '开发指南', // 一级菜单名称
           collapsable: false, // false为默认展开菜单, 默认值true是折叠,
           sidebarDepth: 1, //  设置侧边导航自动提取markdown文件标题的层级，默认1为h2层级
           children: [
             {
-              title: 'GridInteract',
-              path: 'GridInteract.md',
+              title: '安装',
+              path: 'installation.md',
             },
             {
-              title: 'DivInteract',
-              path: 'DivInteractDemo.md',
-            },
-            {
-              title: 'Portal',
-              path: 'PortalDemo.md',
-            },
-          ],
-        },
-        {
-          title: '通用表单',
-          collapsable: false,
-          children: [
-            {
-              title: '介绍',
-              path: 'CommonForm.md',
-            },
-            {
-              title: '值路径path',
-              path: 'common-form/DataPath.md',
-            },
-            {
-              title: '校验规则',
-              path: 'common-form/Rules.md',
-            },
-            {
-              title: '工具函数',
-              path: 'common-form/Utils.md',
-            },
-            {
-              title: '示例',
-              collapsable: false,
-              children: [
-                {
-                  title: '基本用法',
-                  path: 'common-form/LayoutDemo.md',
-                },
-                {
-                  title: '表单校验',
-                  path: 'common-form/Validate.md',
-                },
-                {
-                  title: '自定义控件',
-                  path: 'common-form/CustomComponent.md',
-                },
-              ],
+              title: '快速上手',
+              path: 'quickStart.md',
             },
           ],
         },
@@ -96,4 +55,11 @@ module.exports = {
     },
   },
   plugins: ['vuepress-plugin-typescript'],
+  configureWebpack: {
+    plugins: [
+      new MonacoWebpackPlugin({
+        languages: ['javascript', 'css', 'typescript'],
+      }),
+    ],
+  },
 };
