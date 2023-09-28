@@ -2,9 +2,9 @@
 
 低代码页面入口文件使用tsx书写，定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
 
-## 定义的属性
+接收的属性包括以下几个：
 
-### componentsMap
+## componentsMap
 
 - <span class="primaryText">**必须**</span>
 
@@ -35,7 +35,7 @@ export default class LowcodePage extends Vue {
 :::
 
 
-### editorMap
+## editorMap
 
 非必须
 
@@ -45,6 +45,7 @@ export default class LowcodePage extends Vue {
 2. 在组件中引入它对应的属性编辑器，使用`Portal`组件包裹，`Portal`组件内部会将属性编辑器对应的DOM挂载到它应该出现的地方。
 
 <span class="primaryText">渲染方式一的示例如下：</span>
+
 ```js
 import { ButtonEditor } from '@zjlabvis/lowcode-index';
 
@@ -154,19 +155,64 @@ export default class ParagraphEditor extends Vue {
 }
 </script>
 ```
+
 属性编辑器组件，其实就是一个表单，每个表单项对应着组件的一个属性，比如上面的`Paragraph`组件中定义的属性text，当表单的值有变化时，触发`change`事件，将属性名和属性值组成的键值对传递上去即可，属性编辑想动态设置，即表达式绑定，还有组件的事件绑定，后续文档会详细说明。
 
 
 
-### pageSchema
+## pageSchema
+
+非必须，可以在入口组件的`created`方法中看出，初始化时，优先取属性`pageSchema`，如果pageSchema为空，则取`DEFAULT_PAGE_SCHEMA`
 
 详细介绍，请参阅[低代码页面协议](/pages/development/pageSchema)
 
-### componentsConfig
+## componentsConfig
 
-组件库配置文件
+组件库面板配置
 
-<img src="/components-config.png" style="width: 300px" />
+<img src="/components-config.png" style="width: 240px" />
+
+componentsConfig用来配置低代码页面处于编辑态时左侧组件库面板的展示内容。
+
+示例如下： 
+
+```js
+{
+  "Button": {
+    "title": "按钮",
+    "icon": "https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png",
+    "group": "系统",
+    "category": "基础组件"
+  },
+  "Input": {
+    "title": "输入框",
+    "icon": "https://img.alicdn.com/tfs/TB1ysp3u8v0gK0jSZKbXXbK2FXa-112-64.png",
+    "group": "系统",
+    "category": "表单",
+    "defaultSchema": () => {
+			return {
+				componentName: 'Input',
+        prop: {},
+				children: []
+			};
+		}
+  },
+}
+
+```
+
+key即组件名，比如 "Button", "Input"
+
+value详细配置如下:
+
+| 字段        | 说明        | 类型     | required | 默认值   | 备注 |
+|:-----|:-----|:-----|:-----|:-----|:-----|
+| title | 组件库面板中每个组件的名称 | `string` | ✅ | 空 | | 
+| icon | 组件库面板中每个组件的图标  | `string` |✅| 空 | 图片外链地址或者base64字符串 |
+| group | 组件库中tab分组的组名 | `string` | ✅ | 空 |  | 
+| category | tab分组下所属的类别 | `string` | ✅ | 空 |  |
+| defaultSchema | 组件拖入画布设计区域后组件默认生成的协议 | `function` |非必须| 空 | 函数体需要返回组件的协议内容，组件的通用协议可[参阅文档](/pageSchema.md)|
+
 
 
 
