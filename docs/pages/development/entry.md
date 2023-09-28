@@ -69,26 +69,23 @@ export default class LowcodePage extends Vue {
 
 <span class="primaryText">渲染方式二的示例如下：</span>
 
-自定义低代码组件: 文本段落组件
+自定义创建一个低代码组件，比如文本段落组件
 
-paragraph.vue
+1. 新建组件paragraph.vue，代码如下：
 
 ```vue
-
 <template>
-<p>
-  {{text}}
-<Portal :containerSelector="editorContainerSelector">
-  <Editor :text="text" v-show="editorVisible" />
-</Portal>
-</p>
+  <p>
+    {{text}}
+    <Portal :containerSelector="editorContainerSelector">
+      <Editor :text="text" v-show="editorVisible" @change="onPropsChange" />
+    </Portal>
+  </p>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-
 import { Portal } from '@zjlabvis/lowcode-index';
 import Editor from './editor.vue';
-
 
 @Component({
   components: {
@@ -97,13 +94,79 @@ import Editor from './editor.vue';
    
   },
 })
-export default class Button extends Vue {
+export default class Paragraph extends Vue {
   @Prop({ default: false }) public editorVisible!: boolean;
   @Prop() public editorContainerSelector!: string;
-
   @Prop({ default: '段落' }) public text!: string;
-  
+
+  public onPropsChange(values: any) {
+    this.$emit('onPropsChange', values);
+  }
+}
 </script>
 ```
+
+每个低代码组件都会接收来自低代码框架在渲染组件时传递的属性，比如示例代码中出现的`editorVisible`、`editorContainerSelector`。
+
+`editorVisible`: 表示当前组件是否被选中编辑，等于`true`时，表示当前组件被选中，请务必加上指令`v-show="editorVisible"`
+
+`editorContainerSelector`: css选择器，表示组件的属性编辑器对应的DOM将挂载在该css选择器对应的DOM节点下
+
+从代码中可以看到，属性编辑器Editor被<span class="primaryText">Portal</span>组件包裹，是因为Portal内部会将其children对应的DOM节点挂载到指定的节点下。
+
+另外，还需要监听属性编辑器组件的change事件，将最新的属性键值对作为事件参数，触发`onPropsChange`事件，低代码框架层会接收该事件并触发组件重新渲染。
+
+2. 我们再来看下属性编辑器(editor.vue)应该怎么写，代码如下：
+
+```vue
+<template>
+  <a-form :form="form">
+    <a-form-item label="内容" :labelCol="labelCol" :wrapperCol="wrapperCol">
+      <a-input
+        type="textarea"
+        v-decorator="['text', { initialValue: text }]"
+      />
+    </a-form-item>
+  </a-form>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class ParagraphEditor extends Vue {
+  @Prop({ default: '段落' }) public text!: string;
+
+  public labelCol = { span: 10 };
+
+  public wrapperCol = { span: 13 };
+
+  public form: any = null;
+
+  private created() {
+    this.form = this.$form.createForm(this, {
+      onValuesChange: (props, values) => {
+        const newValues = JSON.parse(JSON.stringify(values));
+        this.$emit('change', newValues);
+      },
+    });
+  }
+}
+</script>
+```
+属性编辑器组件，其实就是一个表单，每个表单项对应着组件的一个属性，比如上面的`Paragraph`组件中定义的属性text，当表单的值有变化时，触发`change`事件，将属性名和属性值组成的键值对传递上去即可，属性编辑想动态设置，即表达式绑定，还有组件的事件绑定，后续文档会详细说明。
+
+
+
+### pageSchema
+
+详细介绍，请参阅[低代码页面协议](/pages/development/pageSchema)
+
+### componentsConfig
+
+组件库配置文件
+
+<img src="/components-config.png" style="width: 300px" />
+
 
 

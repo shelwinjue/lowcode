@@ -51,6 +51,10 @@ module.exports = {
               title: '入口文件',
               path: 'entry.md',
             },
+            {
+              title: '页面协议',
+              path: 'pageSchema.md',
+            },
           ],
         },
       ],
