@@ -33,8 +33,7 @@ new Vue({
 
 可以在`App.vue`中引入通过命令创建的低代码页面index.tsx，示例如下
 
-```vue
-
+```html
 <template>
   <div id="app">
     <Page />
@@ -63,8 +62,6 @@ export default class App extends Vue {}
   height: 100%;
 }
 </style>
-
-
 ```
 
 ## demo演示

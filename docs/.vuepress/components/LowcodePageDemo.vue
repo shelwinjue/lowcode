@@ -20,20 +20,26 @@
         v-if="mode !== 'edit'"
       />
     </div>
+
+    <CodeHelp :codeStr="code" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Page from './lowcodePage';
+import CodeHelp from './CodeHelp.vue';
+import code from './lowcodePageCode';
 import { pageContainerUtils } from '@zjlabvis/lowcode-index';
 
 @Component({
   components: {
     Page,
+    CodeHelp,
   },
 })
 export default class App extends Vue {
+  public code = code;
   public pageSchema: any = null;
   public mode: 'edit' | 'preview' = 'edit';
   public onPreviewClick() {

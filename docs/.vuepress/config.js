@@ -55,6 +55,10 @@ module.exports = {
               title: '页面协议',
               path: 'pageSchema.md',
             },
+            {
+              title: '自定义组件',
+              path: 'customComponent.md',
+            },
           ],
         },
       ],

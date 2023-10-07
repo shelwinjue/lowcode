@@ -70,11 +70,11 @@
 
 - version: `{string}` 当前协议版本号，后续如果协议有大的结构调整，会升级该版本号
 - componentsTree: `{Array}` 描述低代码组件构成的组件树
-- startRefId: `{number}` refId基数，它的值应该大于所有组件refId的最大值
+- startRefId: `{number}` refId基数，它的值应该大于子组件refId的最大值
 
 ### Page
 
-页面组件，组件树的顶层组件，低代码框架渲染层会渲染Page组件的子组件
+页面组件，组件树的顶层组件，低代码框架渲染层会渲染Page组件的children
 
 ### Block
 
@@ -94,7 +94,7 @@ Block组件的默认布局属性，表示其子组件`Row(行容器)`和`Col(列
 | componentName | 组件名称 | `string` |✅| | |
 | refId | 组件计数 | `number` | 非必须 | 空 | 框架内部会统一生成，保证协议内唯一 | 
 | props | 组件属性对象 | `object` | ✅ | 空 | 属性值的类型没有约束 |
-| children | 子组件 | `Array` |非必须| 空 | |
+| children | 子组件列表 | `Array` |非必须| 空 | |
 
 
 

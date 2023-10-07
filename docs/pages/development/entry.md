@@ -1,11 +1,148 @@
 # 低代码页面入口文件
 
+页面入口文件代码示例如下：
+
+```js
+import { Vue, Component, Prop } from 'vue-property-decorator';
+import {
+  pageContainerUtils,
+  Block,
+  Row,
+  Col,
+  Button,
+  ButtonEditor,
+} from '@zjlabvis/lowcode-index';
+
+const DEFAULT_PAGE_SCHEMA = {
+  version: '0.1.0',
+  componentsTree: [
+    {
+      componentName: 'Page',
+      props: {},
+      children: [
+        {
+          componentName: 'Block',
+          props: {
+            defaultLayout: [
+              {
+                flex: 1,
+                cols: [
+                  {
+                    flex: 1,
+                  },
+                ],
+              },
+            ],
+          },
+          children: [
+            {
+              componentName: 'Row',
+              children: [
+                {
+                  componentName: 'Col',
+                  children: [],
+                  props: {},
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+@Component({
+  name: 'appPage',
+})
+export default class LowcodePage extends Vue {
+  /** 组件映射 */
+  @Prop({
+    default() {
+      return {
+        Block,
+        Row,
+        Col,
+        Button
+      };
+    },
+  })
+  private componentsMap: any;
+
+  /** 组件编辑器映射 */
+  @Prop({
+    default() {
+      return {
+        Button: ButtonEditor
+      };
+    },
+  })
+  private editorMap?: any;
+  /** 传入的页面schema */
+  @Prop() private pageSchema: any;
+
+  /** 组件库配置 */
+  @Prop({
+    default() {
+      return {
+        Button: {
+          title: '按钮',
+          icon: 'https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png',
+          group: '系统',
+          category: '基础组件',
+        }
+      };
+    },
+  })
+  private componentsConfig: any;
+
+  /** 最新的页面schema */
+  private curPageSchema: any = {};
+
+  /** 当前模式 */
+  @Prop({ default: 'edit' }) private mode!: string;
+
+  /** 请保留 */
+  private lowcodeEntryFilePath = '${LOWCODE_ENTRY_FILE_PATH}';
+
+  /** 低代码编辑器配置和内部状态 */
+  private lowcodeEditorConfig = {
+    showLayoutTool: true,
+    disableLayoutResize: this.mode === 'preview',
+    showEditorEnhanceTool: true,
+    isPageAutoHeight: true,
+    isSetterPinned: true,
+    showWidthSliderTool: true,
+    showHeader: false,
+    showCodeEditorIcon: false,
+    showOnBoarding: false,
+  };
+
+  /** 页面级数据 */
+  private pageData: any = {};
+
+  private created() {
+    this.curPageSchema = JSON.parse(
+      JSON.stringify(this.pageSchema || DEFAULT_PAGE_SCHEMA || {})
+    );
+  }
+
+  private render() {
+    return pageContainerUtils.render(this.$createElement, this);
+  }
+}
+
+```
+
 低代码页面入口文件使用tsx书写，定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
 
 接收的属性包括以下几个：
 
-## componentsMap
+## 属性
 
+### componentsMap
+
+- 类型：Object
 - <span class="primaryText">**必须**</span>
 
 表示组件名和组件的映射关系，即在页面协议中，componentName所对应的组件，key是组件名, value是组件，例如：
@@ -30,14 +167,16 @@ export default class LowcodePage extends Vue {
 }
 
 ```
+
 ::: tip
 请注意引入Block, Row, Col等内部布局组件
 :::
 
 
-## editorMap
+### editorMap
 
-非必须
+- 类型：Object
+- 非必须
 
 表示组件名和组件的属性编辑器的映射关系。组件的属性编辑器有两种方式声明渲染：
 
@@ -160,13 +299,19 @@ export default class ParagraphEditor extends Vue {
 
 
 
-## pageSchema
+### pageSchema
 
-非必须，可以在入口组件的`created`方法中看出，初始化时，优先取属性`pageSchema`，如果pageSchema为空，则取`DEFAULT_PAGE_SCHEMA`
+- 类型：Object
+- 非必须
 
-详细介绍，请参阅[低代码页面协议](/pages/development/pageSchema)
+可以在入口组件的`created`方法中看出，初始化时，优先取属性`pageSchema`，如果pageSchema为空，则取`DEFAULT_PAGE_SCHEMA`
 
-## componentsConfig
+详细介绍，请参阅[低代码页面协议](./pageSchema.md)
+
+### componentsConfig
+
+- 类型：Object
+- <span class="primaryText">**必须**</span>
 
 组件库面板配置
 
@@ -178,25 +323,25 @@ componentsConfig用来配置低代码页面处于编辑态时左侧组件库面�
 
 ```js
 {
-  "Button": {
-    "title": "按钮",
-    "icon": "https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png",
-    "group": "系统",
-    "category": "基础组件"
+  Button: {
+    title: '按钮',
+    icon: 'https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_button.png',
+    group: '系统',
+    category: '基础组件'
   },
-  "Input": {
-    "title": "输入框",
-    "icon": "https://img.alicdn.com/tfs/TB1ysp3u8v0gK0jSZKbXXbK2FXa-112-64.png",
-    "group": "系统",
-    "category": "表单",
-    "defaultSchema": () => {
-			return {
-				componentName: 'Input',
-        prop: {},
-				children: []
-			};
-		}
-  },
+  Input: {
+    title: '输入框',
+    icon: 'https://img.alicdn.com/tfs/TB1ysp3u8v0gK0jSZKbXXbK2FXa-112-64.png',
+    group: '系统',
+    category: '表单',
+    defaultSchema: () => {
+      return {
+        componentName: 'Input',
+        props: {},
+        children: []
+      };
+    }
+  }
 }
 
 ```
@@ -211,7 +356,97 @@ value详细配置如下:
 | icon | 组件库面板中每个组件的图标  | `string` |✅| 空 | 图片外链地址或者base64字符串 |
 | group | 组件库中tab分组的组名 | `string` | ✅ | 空 |  | 
 | category | tab分组下所属的类别 | `string` | ✅ | 空 |  |
-| defaultSchema | 组件拖入画布设计区域后组件默认生成的协议 | `function` |非必须| 空 | 函数体需要返回组件的协议内容，组件的通用协议可[参阅文档](/pageSchema.md)|
+| defaultSchema | 如果defaultSchema不为空，当组件拖入设计区域后，将以该函数返回的结果作为组件的默认协议，可以通过这种方式设置props的默认值 | `function` |非必须| 空 | 函数体返回的结果需要遵循组件的协议定义，组件的通用协议可[参阅文档](./pageSchema.md)|
+
+
+### mode
+
+- 类型：string
+- <span class="primaryText">**必须**</span>
+
+表示当前低代码页面的模式，其中`edit`表示编辑模式，`preview`表示预览模式。
+
+编辑模式：页面处于设计编辑模式时，左侧工具栏(组件库/页面数据/入口文件)可见，组件可以进行属性编辑，拖拽操作等
+预览模式：页面不可编辑
+
+## data
+
+页面状态数据的定义，需要包括以下几个：
+
+### curPageSchema
+
+- 类型：Object
+- <span class="primaryText">**必须**</span>
+
+最新的页面协议，与属性中定义的pageSchema不同，当组件有变更时(拖拽或者属性发生变化)，会同步更新curPageSchema，但不会修改props中定义的pageSchema
+
+### lowcodeEditorConfig
+
+- 类型：Object
+- <span class="primaryText">**必须**</span>
+
+对象包含以下属性：
+
+| 字段        | 说明        | 类型     | required | 默认值   | 备注 |
+|:-----|:-----|:-----|:-----|:-----|:-----|
+| disableLayoutResize | 是否禁用行容器(Row)和列容器(Col)的resize行为 | `boolean` |  | `false` | | 
+| showLayoutTool | 编辑模式下，是否展示插入行，插入列等功能操作 | `boolean` | | `false` | |
+| showEditorEnhanceTool | 编辑模式下，是否展示功能操作，包括(左侧工具栏、组件选中时悬浮在组件右上方/右下方的组件操作工具栏、组件选中时的移动图标) | `boolean` | ✅ | `false` | |
+| isPageAutoHeight | 页面是否是自适应高度，当等于`false`时，表示将撑满父容器，等于`true`时，表示页面的高度由子组件对应的DOM节点的渲染高度决定 | `boolean` | ✅  | `false`| |
+| isSetterPinned | 编辑模式下，组件的属性编辑面板是否常驻展示 | `boolean` | ✅ | `false` | |
+| showWidthSliderTool | 编辑模式下，是否展示设计区域的宽度滑动调节bar | `boolean` | ✅  | `false`| |
+| showHeader | 编辑模式下，是否展示顶部工具栏 | `boolean` | ✅ | `false` | |
+| showCodeEditorIcon | 编辑模式下，是否展示入口文件代码编辑器 | `boolean` | | `false` | |
+| showOnBoarding | 编辑模式下，是否展示使用指引 | `boolean` | | `false` | 当设置为`true`，且入口文件包含`renderOnBoarding`函数定义时，那么将渲染该使用引导UI |
+
+### pageData
+
+- 类型：Object
+- <span class="primaryText">**必须**</span>
+
+页面级数据，框架层依赖pageData，做了以下几件事：
+1. 框架层会将`pageData`，作为属性，传递给每个子组件，这样每个子组件都可以访问到顶层页面入口文件的`pageData`，子组件接收的属性，[请查看详细说明](./customComponent.md)
+2. 左侧工具栏中的页面数据编辑功能（新增字段/删除字段），修改的是`pageData`
+
+
+### created
+
+created函数应该至少包含以下代码，用来初始化curPageSchema
+
+```js
+private created() {
+  this.curPageSchema = JSON.parse(
+    JSON.stringify(this.pageSchema || DEFAULT_PAGE_SCHEMA || {})
+  );
+}
+
+```
+
+### render
+
+render函数应该至少包含以下代码，通过`pageContainerUtils.render`返回vnode
+```js
+private render() {
+  return pageContainerUtils.render(this.$createElement, this);
+}
+```
+
+## 保留的特殊变量
+
+### DEFAULT_PAGE_SCHEMA 
+
+它由两个作用：
+1. 它是默认的页面协议，如果属性`pageSchema`，将使用DEFAULT_PAGE_SCHEMA的协议内容进行渲染。
+2. 当启用了左侧工具栏中的入口文件代码编辑器功能，即处于本地开发模式，对组件属性的编辑操作，或者对入口文件代码的编辑操作，会同步更新本地文件的`DEFAULT_PAGE_SCHEMA`
+
+
+### lowcodeEntryFilePath
+
+请保留该变量和变量的值，不要更改。当处于本地开发模式时，构建插件会寻找该关键字，并替换成本地文件的相对路径，从而实现本地入口文件双向同步功能。
+
+
+
+
 
 
 
