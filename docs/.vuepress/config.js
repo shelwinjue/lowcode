@@ -56,8 +56,16 @@ module.exports = {
               path: 'pageSchema.md',
             },
             {
-              title: '自定义组件',
+              title: '低代码组件',
               path: 'customComponent.md',
+            },
+            {
+              title: '开发低代码组件',
+              path: 'createComponent.md',
+            },
+            {
+              title: '开发组件的属性编辑器',
+              path: 'createSetter.md',
             },
           ],
         },

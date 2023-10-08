@@ -35,29 +35,20 @@ new Vue({
 
 ```html
 <template>
-  <div id="app">
-    <Page />
+  <div class="app">
+    <LowCodePage />
   </div>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import Page from './index.tsx'
-
-@Component({
-  components: {
-    Page,
-  },
-})
-export default class App extends Vue {}
+<script>
+import LowCodePage from './index.tsx'
+export default {
+	components: {
+		LowCodePage
+	}
+}
 </script>
-
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+.app {
   width: 100%;
   height: 100%;
 }
