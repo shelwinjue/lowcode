@@ -315,7 +315,7 @@ export default class ParagraphEditor extends Vue {
 
 组件库面板配置
 
-<img src="/components-config.png" style="width: 240px" />
+<img src="/components-config.png" class="globalImg" style="width: 240px" />
 
 componentsConfig用来配置低代码页面处于编辑态时左侧组件库面板的展示内容。
 

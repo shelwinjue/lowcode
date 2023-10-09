@@ -67,6 +67,10 @@ module.exports = {
               title: '开发组件的属性编辑器',
               path: 'createSetter.md',
             },
+            {
+              title: '事件绑定',
+              path: 'eventBind.md',
+            },
           ],
         },
       ],

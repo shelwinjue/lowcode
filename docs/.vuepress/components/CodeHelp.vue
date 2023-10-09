@@ -22,6 +22,7 @@
         />
       </a-tooltip>
     </div>
+
     <pre v-if="codeVisible" class="language-javascript">
       <code class="language-javascript" v-html="codeHtml"></code>
     </pre>
@@ -89,10 +90,15 @@ export default {
   //   padding: 0 10px;
   // }
   .wrap {
+    padding: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 8px;
+    border: 1px dashed rgba(118, 118, 118, 0.5);
+    &:hover {
+      border: 1px dashed #161616;
+    }
   }
   .icon {
     cursor: pointer;

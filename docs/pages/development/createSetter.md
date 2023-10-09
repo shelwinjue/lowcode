@@ -148,13 +148,13 @@ export default class TextEditor extends Vue {
   <expbind-ExpbindPageDemo />
 </ClientOnly> 
 
-当属性没有绑定表达式，效果图如下：
+- 当属性没有绑定表达式，效果图如下：
 
 <img src="/expbind.png" class="globalImg" style="width:100%;max-width: 900px" />
 
 
 
-当点击表达式绑定组件时，弹出变量绑定弹框，效果图如下：
+- 当点击表达式绑定组件时，弹出变量绑定弹框，效果图如下：
 
 <img src="/expbind-1.png" class="globalImg" style="width:100%;max-width: 900px" />
 
@@ -174,6 +174,15 @@ export default class TextEditor extends Vue {
 :::
 
 
+- 绑定后，属性编辑器中，表达式绑定组件将高亮展示
+
+<img src="/expbind-2.png" class="globalImg" style="width:100%;max-width: 900px" />
+
+- 取消表达式绑定
+
+<img src="/expbind-3.png" class="globalImg" style="width:100%;max-width: 900px" />
+
+在变量绑定弹框中，点击“移除绑定”即可
 
 
 
