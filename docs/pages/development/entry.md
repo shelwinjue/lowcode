@@ -1,6 +1,6 @@
-# 低代码页面入口文件
+# 低代码页面入口组件
 
-页面入口文件代码示例如下：
+页面入口组件的代码示例如下：
 
 ```js
 import { Vue, Component, Prop } from 'vue-property-decorator';
@@ -134,7 +134,7 @@ export default class LowcodePage extends Vue {
 
 ```
 
-低代码页面入口文件使用tsx书写，定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
+低代码页面入口组件件使用tsx书写，定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
 
 接收的属性包括以下几个：
 
@@ -180,7 +180,7 @@ export default class LowcodePage extends Vue {
 
 表示组件名和组件的属性编辑器的映射关系。组件的属性编辑器有两种方式声明渲染：
 
-1. 在低代码页面入口文件中引入组件的属性编辑器，然后配置在editorMap中，低代码框架内部会在合适的时机将它渲染在正确的地方。
+1. 在低代码页面入口组件中引入组件的属性编辑器，然后配置在editorMap中，低代码框架内部会在合适的时机将它渲染在正确的地方。
 2. 在组件中引入它对应的属性编辑器，使用`Portal`组件包裹，`Portal`组件内部会将属性编辑器对应的DOM挂载到它应该出现的地方。
 
 <span class="primaryText">渲染方式一的示例如下：</span>
@@ -366,7 +366,7 @@ value详细配置如下:
 
 表示当前低代码页面的模式，其中`edit`表示编辑模式，`preview`表示预览模式。
 
-编辑模式：页面处于设计编辑模式时，左侧工具栏(组件库/页面数据/入口文件)可见，组件可以进行属性编辑，拖拽操作等
+编辑模式：页面处于设计编辑模式时，左侧工具栏(组件库/页面数据/页面入口js)可见，组件可以进行属性编辑，拖拽操作等
 预览模式：页面不可编辑
 
 ## data
@@ -396,8 +396,8 @@ value详细配置如下:
 | isSetterPinned | 编辑模式下，组件的属性编辑面板是否常驻展示 | `boolean` | ✅ | `false` | |
 | showWidthSliderTool | 编辑模式下，是否展示设计区域的宽度滑动调节bar | `boolean` | ✅  | `false`| |
 | showHeader | 编辑模式下，是否展示顶部工具栏 | `boolean` | ✅ | `false` | |
-| showCodeEditorIcon | 编辑模式下，是否展示入口文件代码编辑器 | `boolean` | | `false` | |
-| showOnBoarding | 编辑模式下，是否展示使用指引 | `boolean` | | `false` | 当设置为`true`，且入口文件包含`renderOnBoarding`函数定义时，那么将渲染该使用引导UI |
+| showCodeEditorIcon | 编辑模式下，是否展示页面入口组件的源码编辑器 | `boolean` | | `false` | |
+| showOnBoarding | 编辑模式下，是否展示使用指引 | `boolean` | | `false` | 当设置为`true`，且页面入口组件包含`renderOnBoarding`函数定义时，那么将渲染该使用引导UI |
 
 ### pageData
 
@@ -405,7 +405,7 @@ value详细配置如下:
 - <span class="primaryText">**必须**</span>
 
 页面级数据，框架层依赖pageData，做了以下几件事：
-1. 框架层会将`pageData`，作为属性，传递给每个子组件，这样每个子组件都可以访问到顶层页面入口文件的`pageData`，子组件接收的属性，[请查看详细说明](./customComponent.md)
+1. 框架层会将`pageData`，作为属性，传递给每个子组件，这样每个子组件都可以访问到顶层页面入口组件的`pageData`，子组件接收的属性，[请查看详细说明](./customComponent.md)
 2. 左侧工具栏中的页面数据编辑功能（新增字段/删除字段），修改的是`pageData`
 
 
@@ -435,14 +435,14 @@ private render() {
 
 ### DEFAULT_PAGE_SCHEMA 
 
-它由两个作用：
-1. 它是默认的页面协议，如果属性`pageSchema`，将使用DEFAULT_PAGE_SCHEMA的协议内容进行渲染。
-2. 当启用了左侧工具栏中的入口文件代码编辑器功能，即处于本地开发模式，对组件属性的编辑操作，或者对入口文件代码的编辑操作，会同步更新本地文件的`DEFAULT_PAGE_SCHEMA`
+它有两个作用：
+1. 它是默认的页面协议，如果属性`pageSchema`为空，将使用`DEFAULT_PAGE_SCHEMA`的协议内容进行渲染。
+2. 当启用了左侧工具栏中的页面入口组件的源码编辑功能，即处于本地开发模式，对组件属性的编辑操作，或者对页面入口组件源码的编辑操作，会同步更新原文件中`DEFAULT_PAGE_SCHEMA`的内容
 
 
 ### lowcodeEntryFilePath
 
-请保留该变量和变量的值，不要更改。当处于本地开发模式时，构建插件会寻找该关键字，并替换成本地文件的相对路径，从而实现本地入口文件双向同步功能。
+请保留该变量和变量的值，不要更改。当处于本地开发模式时，构建插件会寻找该关键字，并替换成本地文件的相对路径，从而实现页面入口文件`双端(web端和本地)同步`功能。
 
 
 

@@ -7,7 +7,7 @@
 | 字段        | 说明        | 类型     | required | 默认值   | 备注 |
 |:-----|:-----|:-----|:-----|:-----|:-----|
 | componentId | 组件的id | `string` |  |  | | 
-| pageData | 入口文件的pageData  | `object` |  |  |  |
+| pageData | 低代码页面入口组件的pageData  | `object` |  |  |  |
 | editorContainerSelector | 属性编辑器的父节点对应的css选择器 | `string` |  |  |  | 
 | editorVisible | 属性编辑器是否可见 | `boolean` |  | `false` |  |
 | mode | 当前页面的编辑模式 | `string` | | | |

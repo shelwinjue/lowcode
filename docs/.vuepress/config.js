@@ -48,7 +48,7 @@ module.exports = {
               path: 'quickStart.md',
             },
             {
-              title: '入口文件',
+              title: '页面入口组件',
               path: 'entry.md',
             },
             {

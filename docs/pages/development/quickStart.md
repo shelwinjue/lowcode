@@ -8,7 +8,7 @@
 
 ## 引入相关依赖和样式文件
 
-`@zjlabvis/lowcode-index`的界面使用的是`Ant Design Vue 1.x`组件库，所以为了保证页面正常渲染，需要在项目入口文件引入`Ant Design Vue`及相关样式文件，同时也需要引入包`@zjlabvis/lowcode-index`本身的样式文件。
+`@zjlabvis/lowcode-index`的界面使用的是`Ant Design Vue 1.x`组件库，所以为了保证页面正常渲染，需要在项目入口文件中引入`Ant Design Vue`及相关样式文件，同时也需要引入包`@zjlabvis/lowcode-index`本身的样式文件。
 
 在项目入口文件main.js中写入以下内容：
 
@@ -57,7 +57,7 @@ export default {
 
 ## demo演示
 
-至此，一个低代码页面已准备就绪。低代码页面入口文件的代码部分说明、相关API文档、包中已包含的低代码组件，如何开发自定义的低代码组件，请参阅它们各自的文档。
+至此，一个低代码页面已准备就绪。低代码页面入口组件的代码说明、相关API文档、包中已包含的低代码组件，如何开发自定义的低代码组件，请参阅它们各自的文档。
 
 <ClientOnly>
   <LowcodePageDemo />
