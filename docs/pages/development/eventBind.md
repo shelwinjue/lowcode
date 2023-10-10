@@ -6,7 +6,7 @@
 
 打开组件库，向设计区域拖入一个`button`组件，在属性编辑器面板中，切换到事件tab进行事件绑定，将`button`的click事件与页面入口组件的函数`showInfo`进行绑定
 
-<video controls autoplay muted style="width: 100%">
+<video controls autoplay muted style="width: 100%;max-width: 1200px">
   <source src="/eventbind.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
@@ -66,7 +66,7 @@ export default class LowcodePage extends Vue {
 
 editor.vue
 
-```vue
+```html
 <template>
   <div>
     <a-form :form="form">
@@ -125,7 +125,7 @@ export default class ButtonEditor extends Vue {
 
 从上面的代码可以看出，指定组件哪些事件可以绑定，需要做以下几件事：
 1. 引入`@zjlabvis/lowcode-index`中的`EventBind`组件
-2. 给`EventBind`组件传递2个参数，并绑定`change`事件
-- componentSchema: 透传即可
+2. 给`EventBind`组件传递2个参数，并绑定`change`事件回调
+- componentSchema: 组件的协议描述，[参见低代码组件属性说明](./customComponent.md)
 - eventList: 事件字符串数组。比如: `Button`组件内部定义了`click`事件，那么这里的事件字符串就是`click`
-- change事件：绑定的事件回调中再次触发change事件，并带上传递的事件参数
+- change事件：绑定的事件回调中再次触发change事件，并带上`EventBind`组件回传的事件参数

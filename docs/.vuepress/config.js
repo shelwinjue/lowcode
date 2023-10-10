@@ -71,6 +71,10 @@ module.exports = {
               title: '事件绑定',
               path: 'eventBind.md',
             },
+            {
+              title: '组件编辑器面板',
+              path: 'componentEditor.md',
+            },
           ],
         },
       ],
