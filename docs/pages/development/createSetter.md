@@ -184,6 +184,147 @@ export default class TextEditor extends Vue {
 
 在变量绑定弹框中，点击“移除绑定”即可
 
+## slot绑定
+
+很多组件内部实现预留了插槽，以便外部使用。插槽配置也是一个必不可少的功能，我们的框架也提供了<span class="primaryText">**插槽**</span>的配置，同时也支持<span class="primaryText">**作用域插槽**</span>。
+
+slot绑定可以分为两种类型：
+1. 纯js表达式语法，比如：插槽的内容可以是一段静态文本，也可以是一段表达式的执行结果。
+2. 包含标签的子片段(jsx)
+
+### 纯js表达式
+
+操作演示如下：
+
+<video controls muted style="width: 100%;max-width: 1200px">
+  <source src="/slot.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+演示中`input`组件的属性编辑器引入了`slot绑定`组件，在配置slot时，在弹出的slot绑定弹框中，选择了`普通函数`, 这里的`普通函数`是指，在右侧的代码编辑器中，可以书写普通的js语法，，但不支持ts语法，不支持jsx片段。
+
+和属性的表达式绑定一样，`普通函数`中的`this`关键字会绑定为入口组件对应的vue实例对象，因此可以在函数体中通过`this`，访问`pageData`，操作演示如下：
+
+
+<video controls muted style="width: 100%;max-width: 1200px">
+  <source src="/slot-1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+上面演示中代码编辑器中的函数体如下：
+
+```js
+function abc() {
+  return this.pageData.testFormData.gender;
+}
+```
+
+作用域插槽的写法如下：
+
+
+```js
+function abc(slotProps) {
+  // 可以获取到组件向外传递的插槽prop
+  return this.pageData.testFormData.gender;
+}
+```
+
+
+### 包含标签的子片段(jsx)
+
+插入的jsx片段需要经过编译后才能渲染在页面上。<span class="primaryText">**框架内部的实现，是将这段jsx片段插入到本地页面入口文件中，所以只有本地开发模式才会开放这种类型。**</span>
+
+下面演示插入一个标签`<a-icon type="search"/ >`，效果演示如下：
+
+<video controls muted style="width: 100%;max-width: 1200px">
+  <source src="/slot-2.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+::: tip
+选择`jsx`类型时，在slot绑定的代码编辑器中，要求使用ts语法
+:::
+
+上面演示中代码编辑器中的函数体如下：
+
+```js
+function abc() {
+  return (<a-icon type="search" />);
+}
+```
+
+作用域插槽的写法如下：
+
+
+```js
+function abc(slotProps: any) {
+  // 可以获取到组件向外传递的插槽prop
+  return (<a-icon type="search" />);
+}
+```
+
+## 引入slot绑定组件
+
+开发组件的属性编辑时，如果需要在属性编辑面板中支持slot配置，则需要引入框架层提供的`SlotBind`组件，`input`组件的属性编辑器`editor.vue`的部分代码如下所示：
+
+```html
+<template>
+  <div>
+    <a-form :form="form" class="lowcodeEditorForm">
+      <a-form-item>
+        <SlotBind
+          :componentSchema="componentSchema"
+          :slotNames="['prefix', 'suffix']"
+          @change="$emit('change', $event)"
+        />
+      </a-form-item>
+    </a-form>
+  </div>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+import { SlotBind } from '@zjlabvis/lowcode-index';
+
+@Component({
+  components: {
+    SlotBind,
+  },
+})
+export default class InputEditor extends Vue {
+
+  @Prop({
+    default() {
+      return {};
+    },
+  })
+  public componentSchema: any;
+
+  public labelCol = { span: 10 };
+
+  public wrapperCol = { span: 13 };
+
+  public form: any = null;
+
+  private created() {
+    this.form = this.$form.createForm(this, {
+      onValuesChange: (props, values) => {
+        const newValues = JSON.parse(JSON.stringify(values));
+
+        this.$emit('change', newValues);
+      },
+    });
+  }
+}
+</script>
+
+```
+
+需要向`SlotBind`组件传递2个参数，并绑定change事件回调：
+- componentSchema: 组件的协议描述，[参见低代码组件属性说明](./customComponent.md)
+- slotNames: 插槽名数组。比如: `input`组件内部定义了前缀插槽`prefix`和后缀插槽`suffix`
+- change事件：绑定的事件回调中再次触发change事件，并带上`SlotBind`组件回传的事件参数
 
 
 

@@ -19,13 +19,13 @@
 
 ## 可绑定的函数列表
 
-事件绑定弹框左侧变量列表有两个选项，一个是“自定义函数”，另一个是“修改pageData”
+事件绑定弹框左侧变量列表有两个选项，一个是“页面入口组件函数”，另一个是“修改pageData”
 
 <img src="/eventbind-1.png" class="globalImg" style="width:100%;max-width: 700px" />
 
-### 自定义函数
+### 页面入口组件函数
 
-自定义函数是指低代码页面入口组件中定义的函数，比如demo示例中，页面入口组件的代码中定义了showInfo函数
+页面入口组件函数是指低代码页面入口组件中定义的函数，比如demo示例中，页面入口组件的代码中定义了showInfo函数
 
 ```javascript
 export default class LowcodePage extends Vue {
