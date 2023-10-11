@@ -134,7 +134,7 @@ export default class LowcodePage extends Vue {
 
 ```
 
-低代码页面入口组件件使用tsx书写，定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
+低代码页面入口组件使用tsx语法，组件内部定义了几个属性(componentsMap、editorMap、pageSchema、componentsConfig和mode)，定义了几个状态数据(curPageSchema、lowcodeEditorConfig、pageData)，另外还定义了生命周期函数created，以及渲染函数render，还有特殊字段lowcodeEntryFilePath
 
 接收的属性包括以下几个：
 
@@ -180,8 +180,8 @@ export default class LowcodePage extends Vue {
 
 表示组件名和组件的属性编辑器的映射关系。组件的属性编辑器有两种方式声明渲染：
 
-1. 在低代码页面入口组件中引入组件的属性编辑器，然后配置在editorMap中，低代码框架内部会在合适的时机将它渲染在正确的地方。
-2. 在组件中引入它对应的属性编辑器，使用`Portal`组件包裹，`Portal`组件内部会将属性编辑器对应的DOM挂载到它应该出现的地方。
+1. 在低代码页面入口组件中引入组件的属性编辑器，然后配置在editorMap中，低代码框架内部会在合适的时机将它渲染组件的编辑面板中。
+2. 在组件内部引入它对应的属性编辑器，必须使用`Portal`组件包裹，`Portal`内部会将属性编辑器对应的DOM挂载到组件的编辑面板中。
 
 <span class="primaryText">渲染方式一的示例如下：</span>
 
@@ -246,7 +246,7 @@ export default class Paragraph extends Vue {
 </script>
 ```
 
-每个低代码组件都会接收来自低代码框架在渲染组件时传递的属性，比如示例代码中出现的`editorVisible`、`editorContainerSelector`。
+低代码框架在渲染组件时，会传递一些属性，比如示例代码中出现的`editorVisible`、`editorContainerSelector`。
 
 `editorVisible`: 表示当前组件是否被选中编辑，等于`true`时，表示当前组件被选中，请务必加上指令`v-show="editorVisible"`
 
@@ -256,7 +256,7 @@ export default class Paragraph extends Vue {
 
 另外，还需要监听属性编辑器组件的change事件，将最新的属性键值对作为事件参数，触发`onPropsChange`事件，低代码框架层会接收该事件并触发组件重新渲染。
 
-2. 我们再来看下属性编辑器(editor.vue)应该怎么写，代码如下：
+2. 我们再来看下属性编辑器(editor.vue)应该怎么写，代码示例如下：
 
 ```vue
 <template>
@@ -366,8 +366,8 @@ value详细配置如下:
 
 表示当前低代码页面的模式，其中`edit`表示编辑模式，`preview`表示预览模式。
 
-编辑模式：页面处于设计编辑模式时，左侧工具栏(组件库/页面数据/页面入口js)可见，组件可以进行属性编辑，拖拽操作等
-预览模式：页面不可编辑
+- 编辑模式：页面处于设计编辑模式时，左侧工具栏(组件库/页面数据/页面入口js)可见，组件可以进行属性编辑，拖拽操作等
+- 预览模式：页面不可编辑
 
 ## data
 
