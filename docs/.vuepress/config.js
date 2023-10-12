@@ -75,6 +75,10 @@ module.exports = {
               title: '组件编辑器面板',
               path: 'componentEditor.md',
             },
+            {
+              title: '页面数据',
+              path: 'pageData.md',
+            },
           ],
         },
       ],
