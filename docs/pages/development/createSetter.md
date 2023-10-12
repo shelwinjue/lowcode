@@ -136,7 +136,7 @@ export default class TextEditor extends Vue {
 ```
 
 ::: tip
-组件属性是否绑定了表达式，通过它的`type`是否等于`JSExpression`来判断。在示例中，判断组件的属性text的type(`componentSchema.props.text.type`)是否等于`JSExpression`，如果相等，说明已绑定了表达式，不展示输入框组件`<a-input>`
+组件的属性是否绑定了表达式，通过判断该属性的`type`是否等于`JSExpression`。在示例中，通过`componentSchema.props && componentSchema.props.text && componentSchema.props.text.type === 'JSExpression'`来判断`text`是否已绑定了表达式，如果绑定了，则不展示输入框组件`<a-input>`
 :::
 
 
