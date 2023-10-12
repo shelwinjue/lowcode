@@ -1,6 +1,6 @@
 # 事件绑定
 
-低代码组件除了属性可编辑之外，还支持事件绑定，可以将组件支持的事件与页面级组件定义的函数进行绑定。
+低代码组件除了属性可编辑之外，还支持事件绑定，可以将组件支持的事件与页面入口组件定义的函数进行绑定。
 
 ## 操作演示
 
@@ -19,7 +19,7 @@
 
 ## 可绑定的函数列表
 
-事件绑定弹框左侧变量列表有两个选项，一个是“页面入口组件函数”，另一个是“修改pageData”
+事件绑定弹框左侧变量列表有两个选项，一个是<span class="primaryText">页面入口组件函数</span>，另一个是<span class="primaryText">修改pageData</span>
 
 <img src="/eventbind-1.png" class="globalImg" style="width:100%;max-width: 700px" />
 
@@ -49,7 +49,7 @@ export default class LowcodePage extends Vue {
 :::
 
 
-如下图所示，form表单组件，在绑定change事件时，选择了"修改pageData"，并指定了`pageData`的字段formData
+如下图所示，form表单组件，在绑定change事件时，选择了<span class="primaryText">修改pageData</span>，并指定了`pageData`的字段formData
 
 <img src="/eventbind-2.png" class="globalImg" style="width:100%;max-width: 700px" />
 
