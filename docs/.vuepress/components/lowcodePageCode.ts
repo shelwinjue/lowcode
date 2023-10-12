@@ -6,8 +6,11 @@ import {
   Row,
   Col,
   Table,
+  TableEditor,
   ImageBox,
+  ImageEditor,
   Icon,
+  IconEditor,
   RichText,
   Button,
   ButtonEditor,
@@ -343,6 +346,9 @@ export default class LowcodePage extends Vue {
         Text: TextEditor,
         Radio: RadioEditor,
         InputNumber: InputNumberEditor,
+        Icon: IconEditor,
+        ImageBox: ImageEditor,
+        Table: TableEditor,
       };
     },
   })
@@ -385,7 +391,7 @@ export default class LowcodePage extends Vue {
           category: '文本',
         },
         Table: {
-          title: 'table',
+          title: '表格',
           icon: 'https://alifd.oss-cn-hangzhou.aliyuncs.com/fusion-cool/icons/icon-light/ic_light_table.png',
           group: '系统',
           category: '表格',

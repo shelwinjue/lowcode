@@ -52,6 +52,10 @@ module.exports = {
               path: 'entry.md',
             },
             {
+              title: '页面入口组件代码在线编辑',
+              path: 'codeEditor.md',
+            },
+            {
               title: '页面协议',
               path: 'pageSchema.md',
             },
