@@ -6,8 +6,11 @@ import {
   Row,
   Col,
   Table,
+  TableEditor,
   ImageBox,
+  ImageEditor,
   Icon,
+  IconEditor,
   RichText,
   Button,
   ButtonEditor,
@@ -124,6 +127,9 @@ export default class LowcodePage extends Vue {
         Text: TextEditor,
         Radio: RadioEditor,
         InputNumber: InputNumberEditor,
+        Icon: IconEditor,
+        ImageBox: ImageEditor,
+        Table: TableEditor,
       };
     },
   })
@@ -296,7 +302,7 @@ export default class LowcodePage extends Vue {
   };
 
   public showInfo() {
-    this.$message.info('This is test message');
+    (this as any).$message.info('This is test message');
   }
 
   private created() {
@@ -309,6 +315,7 @@ export default class LowcodePage extends Vue {
     return pageContainerUtils.render(this.$createElement, this);
   }
 }
+
 `;
 
 export default code;

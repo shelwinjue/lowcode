@@ -5,8 +5,11 @@ import {
   Row,
   Col,
   Table,
+  TableEditor,
   ImageBox,
+  ImageEditor,
   Icon,
+  IconEditor,
   RichText,
   Button,
   ButtonEditor,
@@ -123,6 +126,9 @@ export default class LowcodePage extends Vue {
         Text: TextEditor,
         Radio: RadioEditor,
         InputNumber: InputNumberEditor,
+        Icon: IconEditor,
+        ImageBox: ImageEditor,
+        Table: TableEditor,
       };
     },
   })
