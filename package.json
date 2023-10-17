@@ -4,7 +4,7 @@
     "@types/wicg-file-system-access": "^2020.9.6",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
-    "@zjlabvis/lowcode-index": "^1.1.10",
+    "@zjlabvis/lowcode-index": "^1.1.11",
     "eslint": "^6.2.0",
     "eslint-plugin-vue": "^6.2.2",
     "less": "^4.0.0",
