@@ -148,7 +148,7 @@ export default class LowcodePage extends Vue {
           category: '基础组件',
         },
         Text: {
-          title: '纯文本',
+          title: '文本',
           icon: 'https://img.alicdn.com/imgextra/i3/O1CN01n5wpxc1bi862KuXFz_!!6000000003498-55-tps-50-50.svg',
           group: '系统',
           category: '文本',
