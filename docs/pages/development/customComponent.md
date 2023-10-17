@@ -8,9 +8,9 @@
 |:-----|:-----|:-----|:-----|:-----|:-----|
 | componentId | 组件的id | `string` |  |  | | 
 | pageData | 低代码页面入口组件的pageData  | `object` |  |  |  |
-| editorContainerSelector | 属性编辑器的DOM节点挂载的容器对应的css选择器 | `string` |  |  |  | 
+| editorContainerSelector | 属性编辑器的DOM节点挂载的容器对应的CSS选择器 | `string` |  |  |  | 
 | editorVisible | 属性编辑器是否可见 | `boolean` |  | `false` |  |
-| mode | 当前页面的编辑模式 | `string` | | | |
+| mode | 当前页面的模式 | `string` | | `'edit'` | |
 | lowcodeEditorConfig | 当前低代码页面的配置对象 | `object` | | | | 
 | componentSchema | 当前组件对应的组件协议，`{props: {}, componentName: ''}` | `object` | | | |
 | findNearestParentByName | 通过组件选项里的name属性查找最近的父实例 | `(name: string) => vm` | | | |
