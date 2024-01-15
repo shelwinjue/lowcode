@@ -1,12 +1,12 @@
 const { execSync } = require('child_process');
 const dir = 'docs/.vuepress/dist';
 
-// execSync('npm run build', (err, stdout, stderr) => {
-//   if (err) {
-//     console.log(err);
-//     return;
-//   }
-// });
+execSync('npm run build', (err, stdout, stderr) => {
+  if (err) {
+    console.log(err);
+    return;
+  }
+});
 
 execSync('git init', { cwd: dir }, (err, stdout, stderr) => {
   if (err) {
