@@ -32,6 +32,7 @@
 
 与正常书写css代码一样，操作演示如下：
 
+
 <video controls autoplay loop muted style="width: 100%;max-width: 1200px">
   <source src="/lowcode-site/styleEditor.mp4" type="video/mp4">
   Your browser does not support the video tag.
