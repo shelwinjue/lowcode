@@ -150,13 +150,13 @@ export default class TextEditor extends Vue {
 
 - 当属性没有绑定表达式，效果图如下：
 
-<img src="/expbind.png" class="globalImg" style="width:100%;max-width: 900px" />
+<img src="/lowcode-site/expbind.png" class="globalImg" style="width:100%;max-width: 900px" />
 
 
 
 - 当点击表达式绑定组件时，弹出变量绑定弹框，效果图如下：
 
-<img src="/expbind-1.png" class="globalImg" style="width:100%;max-width: 900px" />
+<img src="/lowcode-site/expbind-1.png" class="globalImg" style="width:100%;max-width: 900px" />
 
 在弹出的变量绑定弹框中，可以点击选择变量列表`pageData`的属性`title`，点击后表达式编辑器中出现`this.pageData.title`。
 
@@ -176,11 +176,11 @@ export default class TextEditor extends Vue {
 
 - 绑定后，属性编辑器中，表达式绑定组件将高亮展示
 
-<img src="/expbind-2.png" class="globalImg" style="width:100%;max-width: 900px" />
+<img src="/lowcode-site/expbind-2.png" class="globalImg" style="width:100%;max-width: 900px" />
 
 - 取消表达式绑定
 
-<img src="/expbind-3.png" class="globalImg" style="width:100%;max-width: 900px" />
+<img src="/lowcode-site/expbind-3.png" class="globalImg" style="width:100%;max-width: 900px" />
 
 在变量绑定弹框中，点击“移除绑定”即可
 
@@ -197,7 +197,7 @@ slot绑定可以分为两种类型：
 操作演示如下：
 
 <video controls muted style="width: 100%;max-width: 1200px">
-  <source src="/slot.mp4" type="video/mp4">
+  <source src="/lowcode-site/slot.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -207,7 +207,7 @@ slot绑定可以分为两种类型：
 
 
 <video controls muted style="width: 100%;max-width: 1200px">
-  <source src="/slot-1.mp4" type="video/mp4">
+  <source src="/lowcode-site/slot-1.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -237,7 +237,7 @@ function abc(slotProps) {
 下面演示插入一个标签`<a-icon type="search"/ >`，效果演示如下：
 
 <video controls muted style="width: 100%;max-width: 1200px">
-  <source src="/slot-2.mp4" type="video/mp4">
+  <source src="/lowcode-site/slot-2.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 

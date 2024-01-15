@@ -7,7 +7,7 @@
 打开组件库，向设计区域拖入一个`button`组件，在属性编辑器面板中，切换到事件tab进行事件绑定，将`button`的click事件与页面入口组件的函数`showInfo`进行绑定
 
 <video controls autoplay muted style="width: 100%;max-width: 1200px">
-  <source src="/eventbind.mp4" type="video/mp4">
+  <source src="/lowcode-site/eventbind.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
@@ -21,7 +21,7 @@
 
 事件绑定弹框左侧变量列表有两个选项，一个是<span class="primaryText">页面入口组件函数</span>，另一个是<span class="primaryText">修改pageData</span>
 
-<img src="/eventbind-1.png" class="globalImg" style="width:100%;max-width: 700px" />
+<img src="/lowcode-site/eventbind-1.png" class="globalImg" style="width:100%;max-width: 700px" />
 
 ### 页面入口组件函数
 
@@ -51,7 +51,7 @@ export default class LowcodePage extends Vue {
 
 如下图所示，form表单组件，在绑定change事件时，选择了<span class="primaryText">修改pageData</span>，并指定了`pageData`的字段formData
 
-<img src="/eventbind-2.png" class="globalImg" style="width:100%;max-width: 700px" />
+<img src="/lowcode-site/eventbind-2.png" class="globalImg" style="width:100%;max-width: 700px" />
 
 效果demo如下：
 

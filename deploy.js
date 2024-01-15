@@ -30,7 +30,7 @@ execSync('git commit -m "deploy"', { cwd: dir }, (err, stdout, stderr) => {
 });
 
 execSync(
-  'git push -f git@github.com:shelwinjue/lowcode-site.git gh-pages',
+  'git push -f git@github.com:shelwinjue/lowcode-site.git master:gh-pages',
   { cwd: dir },
   (err, stdout, stderr) => {
     if (err) {

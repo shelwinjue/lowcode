@@ -10,12 +10,12 @@
 
 页面入口文件代码编辑入口如下所示：
 
-<img src="/onlineEditor-entry.jpg" class="globalImg" style="max-width: 340px;width: 100%" />
+<img src="/lowcode-site/onlineEditor-entry.jpg" class="globalImg" style="max-width: 340px;width: 100%" />
 
 
 页面入口文件代码编辑面板如下所示：
 
-<img src="/onlineEditor-panel.jpg" class="globalImg" style="max-width: 840px;width: 100%" />
+<img src="/lowcode-site/onlineEditor-panel.jpg" class="globalImg" style="max-width: 840px;width: 100%" />
 
 代码编辑面板允许用户编写JavaScript 代码，并支持 JSX 语法。暂未支持代码语法报错提示。
 
@@ -38,6 +38,6 @@
 随后，打开代码在线编辑面板，对入口文件中`pageData`对象的`textDemo`赋予新的值，点击保存按钮。
 
 <video controls muted style="width: 100%;max-width: 1200px">
-  <source src="/onlineCodeEditor.mp4" type="video/mp4">
+  <source src="/lowcode-site/onlineCodeEditor.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>

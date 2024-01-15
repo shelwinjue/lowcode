@@ -324,7 +324,7 @@ export default class LowcodePage extends Vue {
 
 组件库面板如下图所示：
 
-<img src="/components-config.png" class="globalImg" style="width: 240px" />
+<img src="/lowcode-site/components-config.png" class="globalImg" style="width: 240px" />
 
 `componentsConfig`用来配置页面处于编辑态时左侧组件库面板的展示内容。
 
